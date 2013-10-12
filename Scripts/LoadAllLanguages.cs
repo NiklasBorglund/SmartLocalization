@@ -79,6 +79,7 @@ public class LoadAllLanguages : MonoBehaviour
 			GUILayout.EndScrollView();
 			
 			languagesScrollPosition = GUILayout.BeginScrollView (languagesScrollPosition);
+#if !UNITY_WP8
 			foreach(CultureInfo language in thisLanguageManager.AvailableLanguagesCultureInfo)
 			{
 				if(GUILayout.Button(language.NativeName, GUILayout.Width(960)))
@@ -87,6 +88,16 @@ public class LoadAllLanguages : MonoBehaviour
 					currentLanguageValues = thisLanguageManager.GetTextDataBase();
 				}
 			}
+#else
+			foreach(string language in thisLanguageManager.AvailableLanguages)
+			{
+				if(GUILayout.Button(language, GUILayout.Width(960)))
+				{
+					thisLanguageManager.ChangeLanguage(language);
+					currentLanguageValues = thisLanguageManager.GetTextDataBase();
+				}
+			}
+#endif
 			GUILayout.EndScrollView();
 		}
 	}

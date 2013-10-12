@@ -110,6 +110,7 @@ public class LanguageManager : MonoBehaviour
 		}
 	}
 	
+#if !UNITY_WP8
 	//Same as availableLanguages, but contains more info in the form of System.Globalization.CultureInfo
 	private List<CultureInfo> availableLanguagesCultureInfo = new List<CultureInfo>();
 	/// <summary>
@@ -125,6 +126,7 @@ public class LanguageManager : MonoBehaviour
 			return availableLanguagesCultureInfo;	
 		}
 	}
+#endif
 	
 	/// <summary>
 	/// a bool which indicates if a language is loaded
@@ -311,7 +313,9 @@ public class LanguageManager : MonoBehaviour
 	{
 		//Clear the available languages list
 		availableLanguages.Clear();
+#if !UNITY_WP8
 		availableLanguagesCultureInfo.Clear();
+#endif
 		
 		Object[] languageFiles = Resources.LoadAll("Localization/Generated Assets", typeof(TextAsset));
 		string languageStart = "Language.";
@@ -323,7 +327,9 @@ public class LanguageManager : MonoBehaviour
 				{
 					string thisLanguageName = languageFile.name.Substring(languageStart.Length);
 					availableLanguages.Add(thisLanguageName);
+#if !UNITY_WP8
 					availableLanguagesCultureInfo.Add(CultureInfo.GetCultureInfo(thisLanguageName));
+#endif
 				}
 			}
 		}
