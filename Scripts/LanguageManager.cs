@@ -534,19 +534,24 @@ public class LanguageManager : MonoBehaviour
 			Debug.LogWarning("LanguageManager.cs: The system language of this application is Unknown");
 			return "Unknown";
 		}
-		
+
 		string systemLanguage = Application.systemLanguage.ToString();
+#if !UNITY_WP8
 		CultureInfo[] cultureInfos = CultureInfo.GetCultures(CultureTypes.AllCultures);
 		foreach(CultureInfo info in cultureInfos)
 		{
 			if(info.EnglishName == systemLanguage)
 			{
-				return info.Name;	
+				return info.Name;
 			}
 		}
-		
+
 		Debug.LogError("LanguageManager.cs: A system language of this application is could not be found!");
 		return "System Language not found!";
+#else
+		Debug.LogError("LanguageManager.cs: GetSystemLanguage() Feature is not currently available in Smart Localization for Windows Phone 8");
+		return defaultLanguage;
+#endif
 	}
 	/// <summary>
 	/// Gets the culture info of the specified string
