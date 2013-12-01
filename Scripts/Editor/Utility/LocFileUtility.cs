@@ -340,21 +340,26 @@ public class LocFileUtility
 		XmlWriter xmlWriter = XmlWriter.Create(writer);
 		xmlWriter.Settings.Encoding = Encoding.UTF8;
 		xmlWriter.Settings.Indent = true;
-
 		xmlWriter.WriteStartDocument();
 		xmlWriter.WriteStartElement("root");
 		xmlWriter.WriteRaw(resxHeader); // Paste in the raw resx header
+		xmlWriter.WriteString("\n");  
 
 		//Copy the keys over to the new language
 		foreach(KeyValuePair<string, string> keyPair in languageValueDictionary)
 		{
+			xmlWriter.WriteString("\t");
 			xmlWriter.WriteStartElement("data");
 			xmlWriter.WriteAttributeString("name", keyPair.Key);
 			xmlWriter.WriteAttributeString("xml:space", "preserve");
+			xmlWriter.WriteString("\n\t\t");
+
 			xmlWriter.WriteStartElement("value");
 			xmlWriter.WriteString(keyPair.Value);
 			xmlWriter.WriteEndElement(); //value
+			xmlWriter.WriteString("\n\t");
 			xmlWriter.WriteEndElement(); //data
+			xmlWriter.WriteString("\n");  
 		}
 
 		xmlWriter.WriteEndElement(); //root
