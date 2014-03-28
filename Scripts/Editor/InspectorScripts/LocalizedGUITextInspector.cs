@@ -47,7 +47,7 @@ public class LocalizedGUITextInspector : Editor
 		
 		selectedKey = LocalizedKeySelector.SelectKeyGUI(selectedKey, true, LocalizedObjectType.STRING);
 		
-		if(!Application.isPlaying && GUILayout.Button("Use Key", GUILayout.Width(70)))
+		if(!Application.isPlaying && GUILayout.Button("Use Key", GUILayout.Width(80)))
 		{
 			GameObject targetGameObject = ((GUIText)target).gameObject;
 			LocalizedGUIText textObject = targetGameObject.GetComponent<LocalizedGUIText>();

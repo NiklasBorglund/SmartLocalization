@@ -47,7 +47,7 @@ public class LocalizedTextMeshInspector : Editor
 
         selectedKey = LocalizedKeySelector.SelectKeyGUI(selectedKey, true, LocalizedObjectType.STRING);
 
-        if(!Application.isPlaying && GUILayout.Button("Use Key", GUILayout.Width(70)))
+        if(!Application.isPlaying && GUILayout.Button("Use Key", GUILayout.Width(80)))
         {
             GameObject targetGameObject = ((TextMesh)target).gameObject;
             LocalizedTextMesh textObject = targetGameObject.GetComponent<LocalizedTextMesh>();
