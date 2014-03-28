@@ -87,7 +87,7 @@ public class LocalizedKeySelector
 				currentKey = parsedRootValues[newIndex];
 			}
 			
-			if(!autoRefresh && GUILayout.Button("Refresh list", GUILayout.Width(70)))
+			if(!autoRefresh && GUILayout.Button("Refresh list", GUILayout.Width(80)))
 			{
 				RefreshList(sort, sortType);
 			}
