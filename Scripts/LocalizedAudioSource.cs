@@ -45,6 +45,11 @@ public class LocalizedAudioSource : MonoBehaviour
 		OnChangeLanguage(thisLanguageManager);
 	}
 	
+	void OnDestroy()
+	{
+		LanguageManager.Instance.OnChangeLanguage -= OnChangeLanguage;
+	}
+
 	void OnChangeLanguage(LanguageManager thisLanguageManager)
 	{
 		//Initialize all your language specific variables here
