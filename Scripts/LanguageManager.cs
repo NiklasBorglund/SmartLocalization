@@ -561,4 +561,28 @@ public class LanguageManager : MonoBehaviour
 	{
 		return CultureInfo.GetCultureInfo(languageName);
 	}
+
+    /// <summary>
+    /// Adds the language changed listener to ChangeLanguageEventHandler.
+    /// </summary>
+    /// <param name="listener">Language changed listener.</param>
+    public void addLanguageChangedListener(ChangeLanguageEventHandler listener)
+    {
+        if (OnChangeLanguage != null)
+        {
+            OnChangeLanguage += listener;
+        }
+    }
+
+    /// <summary>
+    /// Removes the language changed listener from ChangeLanguageEventHandler.
+    /// </summary>
+    /// <param name="listener">Language changed listener.</param>
+    public void removeLanguageChangedListener(ChangeLanguageEventHandler listener)
+    {
+        if (OnChangeLanguage != null)
+        {
+            OnChangeLanguage -= listener;
+        }
+    }
 }

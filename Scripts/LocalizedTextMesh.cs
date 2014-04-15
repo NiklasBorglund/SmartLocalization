@@ -31,6 +31,7 @@ public class LocalizedTextMesh : MonoBehaviour
     public string localizedKey = "INSERT_KEY_HERE";
 
     private TextMesh textMesh;
+    private LanguageManager thisLanguageManager;
 
     void Start()
     {
@@ -39,8 +40,8 @@ public class LocalizedTextMesh : MonoBehaviour
         if (textMesh!=null)
         {
             //Subscribe to the change language event
-            LanguageManager thisLanguageManager = LanguageManager.Instance;
-            thisLanguageManager.OnChangeLanguage += OnChangeLanguage;
+            thisLanguageManager = LanguageManager.Instance;
+            thisLanguageManager.addLanguageChangedListener(OnChangeLanguage);
 
             //Run the method one first time
             OnChangeLanguage(thisLanguageManager);
@@ -49,7 +50,10 @@ public class LocalizedTextMesh : MonoBehaviour
 
     void OnDestroy()
     {
-        LanguageManager.Instance.OnChangeLanguage -= OnChangeLanguage;
+		if (thisLanguageManager!=null)
+		{
+			thisLanguageManager.removeLanguageChangedListener(OnChangeLanguage);
+		}        
     }
 
     void OnChangeLanguage(LanguageManager thisLanguageManager)
