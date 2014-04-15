@@ -32,11 +32,13 @@ public class LocalizedAudioSource : MonoBehaviour
 	public AudioClip thisAudioClip;
 	private AudioSource thisAudioSource;
 	
+    private LanguageManager thisLanguageManager;
+
 	void Start () 
 	{
 		//Subscribe to the change language event
-		LanguageManager thisLanguageManager = LanguageManager.Instance;
-		thisLanguageManager.OnChangeLanguage += OnChangeLanguage;
+        thisLanguageManager = LanguageManager.Instance;
+        thisLanguageManager.addLanguageChangedListener(OnChangeLanguage);
 		
 		//Get the audio source
 		thisAudioSource = this.audio;
@@ -45,6 +47,11 @@ public class LocalizedAudioSource : MonoBehaviour
 		OnChangeLanguage(thisLanguageManager);
 	}
 	
+    void OnDestroy()
+    {
+        thisLanguageManager.removeLanguageChangedListener(OnChangeLanguage);
+    }
+
 	void OnChangeLanguage(LanguageManager thisLanguageManager)
 	{
 		//Initialize all your language specific variables here
