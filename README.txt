@@ -1,3 +1,5 @@
+NOTE: There is a newer, closed source version available(2.0) at the Unity Asset Store: https://www.assetstore.unity3d.com/en/#!/content/7543 
+
 Smart Localization by Niklas Borglund - niklasborglund[at]gmail[dot]com, @NiklasBorglund
 ---------------------------------------
 Localizing your game has never been this easy. Localize your game with only a few mouse clicks.
